@@ -25,18 +25,6 @@ module Dummy
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-
-	FactoryGirl.definition_file_paths = %w(../factories/**)
-	#FactoryGirl.find_definitions
-	FactoryGirl.reload
-	# You can use this line to see what factories are loaded
-
-	puts "Dummy app - initlization !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111"
-	puts Rails.root
-	puts FactoryGirl.factories
-	puts '-------------------------------------------------------'
-
-
   end
 end
 

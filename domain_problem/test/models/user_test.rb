@@ -2,10 +2,6 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
-  def setup
-    FactoryGirl.find_definitions 
-  end
-
   test "name is not empty" do  	
     @user = FactoryGirl.build(:user)
     @user.name = ''
@@ -25,9 +21,13 @@ class UserTest < ActiveSupport::TestCase
     user_2 = FactoryGirl.build(:user, email: 'abc@abc.com')
 
     user_1.save
-    assert user_1.valid?
     user_2.save
+
+    assert user_1.valid?
     assert user_2.invalid?
+    puts user_2.errors.full_messages.to_s
+
+    assert user_2.errors.full_messages.include? "Email has already been taken"
   end
 
   # test "valid name" do

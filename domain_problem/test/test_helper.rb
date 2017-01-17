@@ -18,3 +18,5 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.fixtures :all
 end
 
+FactoryGirl.definition_file_paths = [ Rails.root.to_s + '/../factories' ]
+FactoryGirl.find_definitions
