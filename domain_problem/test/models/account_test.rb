@@ -3,8 +3,7 @@ require 'test_helper'
 class AccountTest < ActiveSupport::TestCase
 
   test "balance can be zero" do
-    @account = FactoryGirl.build(:account)
-    @account.user = FactoryGirl.build(:user)
+    @account = FactoryGirl.build(:account, user: FactoryGirl.build(:user))
 
     @account.balance = 0
     @account.save
@@ -13,8 +12,7 @@ class AccountTest < ActiveSupport::TestCase
   end
 
   test "balance can be positive" do
-    @account = FactoryGirl.build(:account)
-    @account.user = FactoryGirl.build(:user)
+    @account = FactoryGirl.build(:account, user: FactoryGirl.build(:user))
 
     @account.balance = 10
     @account.save
@@ -23,14 +21,22 @@ class AccountTest < ActiveSupport::TestCase
   end
 
   test "balance can't be negative" do
-    @account = FactoryGirl.build(:account)
-    @account.user = FactoryGirl.build(:user)
+    @account = FactoryGirl.build(:account, user: FactoryGirl.build(:user))
 
     @account.balance = -10
     @account.save
     
     assert @account.invalid?
     assert @account.errors.full_messages.include? "Balance " + I18n.t("errors.messages.greater_than_or_equal_to", count: 0)
+  end
+
+  test "must have an associated user" do
+  	@account = FactoryGirl.build(:account, user: nil)
+
+  	@account.save
+
+  	assert @account.invalid?
+  	assert @account.errors.full_messages.include? "User " + I18n.t("errors.messages.blank")
   end
 
 end
