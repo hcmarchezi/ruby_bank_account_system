@@ -26,32 +26,31 @@ class UserTest < ActiveSupport::TestCase
     assert user_2.errors.full_messages.include? "Email " + I18n.t("errors.messages.taken")
   end
 
-  test "valid name" do
+  test "name with letters and spaces is valid" do
     @user = FactoryGirl.build(:user)
-    @user.name = 'Valid Name'
+    @user.name = 'Walter Mercado'
     @user.save
     assert @user.valid? 
   end
 
-  test "invalid name" do
+  test "name with symbols is not valid" do
     @user = FactoryGirl.build(:user)
-    @user.name = "123 Invalid &&*"
-    @user.save
-    assert @user.invalid?
-    puts "errors = " + @user.errors.full_messages.to_s
-  #   assert @user.errors.full_messages.include? "Name " + I18n.t("errors.messages.invalid")
+    @user.name = '###Pedro###'
+    @user.save    
+    assert @user.invalid?    
+    assert @user.errors.full_messages.include? "Name " + I18n.t("errors.messages.invalid")
   end
 
-  test "valid email" do
+  test "email is valid when properly formatted" do
     @user = FactoryGirl.build(:user)
     @user.email = "valid@email.com"
     @user.save
     assert @user.valid? 
   end
 
-  test "invalid email" do
+  test "email is invalid when improperly formatted" do
     @user = FactoryGirl.build(:user)
-    @user.email = "123@!!!!.com"
+    @user.email = '123@!!!!.com'
     @user.save
     @user.invalid?
     assert @user.errors.full_messages.include? "Email " + I18n.t("errors.messages.invalid")
