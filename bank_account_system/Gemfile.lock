@@ -1,3 +1,9 @@
+PATH
+  remote: ../domain_problem
+  specs:
+    domain_problem (0.1.0)
+      rails (~> 5.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -42,7 +48,13 @@ GEM
     builder (3.2.2)
     byebug (9.0.6)
     concurrent-ruby (1.0.4)
+    database_cleaner (1.5.3)
     erubis (2.7.0)
+    factory_girl (4.8.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
+      railties (>= 3.0.0)
     ffi (1.9.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -120,6 +132,9 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  database_cleaner (~> 1.5)
+  domain_problem!
+  factory_girl_rails (~> 4.8)
   listen (~> 3.0.5)
   puma (~> 3.0)
   rails (~> 5.0.1)

@@ -1,0 +1,2 @@
+class InexistentOriginAccountError < StandardError
+end

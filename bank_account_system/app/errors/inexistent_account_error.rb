@@ -1,0 +1,2 @@
+class InexistentAccountError < StandardError
+end

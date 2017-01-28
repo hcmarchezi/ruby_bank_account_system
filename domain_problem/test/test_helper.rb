@@ -18,5 +18,6 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.fixtures :all
 end
 
+# Factory girl support for plugin tests
 FactoryGirl.definition_file_paths = [ Rails.root.to_s + '/../factories' ]
 FactoryGirl.find_definitions
