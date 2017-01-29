@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+  use_cases:
+    errors:
+      messages:
+        current_balance:
+          inexistent_account_error: "Bank account id is inexistent"
+

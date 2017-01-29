@@ -14,10 +14,14 @@ module DomainProblem
     # append factory girl definitions to client application
     initializer :append_factory_girl_definitions do |app|
       unless app.root.to_s.match root.to_s
-        plugin_factories = Rails.root.to_s + '/../domain_problem/test/factories'
-    
-        if ! FactoryGirl.definition_file_paths.include? plugin_factories
-            FactoryGirl.definition_file_paths << plugin_factories
+
+        # Include FactoryGirl factories only when in test mode
+        if Rails.env.test?
+          plugin_factories = Rails.root.to_s + '/../domain_problem/test/factories'
+      
+          if ! FactoryGirl.definition_file_paths.include? plugin_factories
+              FactoryGirl.definition_file_paths << plugin_factories        
+          end
         end
 
       end    
